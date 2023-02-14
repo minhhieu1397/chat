@@ -1,6 +1,9 @@
 import { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import '../css/style.css';
+import Logo from "../logo.svg";
+import { Link } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
@@ -102,14 +105,8 @@ export default class Register extends Component<Props, State> {
 
     return (
       <div className="row text-center">
-      <div className="col-md-3 just-content-center">
+      <div className="ps-0 col-md-3 just-content-center">
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
           <Formik
             initialValues={initialValues}
             validationSchema={this.validationSchema}
@@ -117,59 +114,68 @@ export default class Register extends Component<Props, State> {
           >
             <Form>
               {!successful && (
-                <div>
-                  <div className="form-group">
-                    <label htmlFor="username"> Username </label>
-                    <Field name="username" type="text" className="form-control" />
-                    <ErrorMessage
-                      name="username"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
+                <div className="form-register">
+                  <div className="form-content">
+                    <div className="brand">
+                      <img src={Logo} alt="logo" />
+                      <h1>From Hust</h1>
+                    </div>
+                    <div className="form-group text-start">
+                      <label htmlFor="username"> Tên đăng nhập </label>
+                      <Field name="username" type="text" className="form-control" />
+                      <ErrorMessage
+                        name="username"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="email"> Email </label>
-                    <Field name="email" type="email" className="form-control" />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
+                    <div className="form-group text-start">
+                      <label htmlFor="email"> Email </label>
+                      <Field name="email" type="email" className="form-control" />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="password"> Password </label>
-                    <Field
-                      name="password"
-                      type="password"
-                      className="form-control"
-                    />
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="alert alert-danger"
-                    />
-                  </div>
+                    <div className="form-group text-start">
+                      <label htmlFor="password"> Mật khẩu </label>
+                      <Field
+                        name="password"
+                        type="password"
+                        className="form-control"
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="alert alert-danger"
+                      />
+                    </div>
 
-                  <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                    <div className="form-group">
+                      <button type="submit" className="btn btn-primary btn-block">Đăng kí</button>
+                    </div>
+                    <span>
+                      BẠN ĐÃ CÓ TÀI KHOẢN ? <Link to="/login">ĐĂNG NHẬP.</Link>
+                    </span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {message && (
-                <div className="form-group">
-                  <div
-                    className={
-                      successful ? "alert alert-success" : "alert alert-danger"
-                    }
-                    role="alert"
-                  >
-                    {message}
+                {message && (
+                  <div className="form-group">
+                    <div
+                      className={
+                        successful ? "alert alert-success" : "alert alert-danger"
+                      }
+                      role="alert"
+                    >
+                      {message}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </Form>
           </Formik>
         </div>
@@ -178,3 +184,4 @@ export default class Register extends Component<Props, State> {
     );
   }
 }
+
